@@ -11,7 +11,7 @@ html {
             width: 100%;
             height: 100%;
             background: url(magazin.jpg) center/cover;
-            filter: blur(8px);
+            filter: blur(5px);
             z-index: -1;
         }
 
@@ -20,7 +20,7 @@ html {
             margin: 0;
             min-height: 100vh;
             position: relative; /* Важно для корректного позиционирования */
-            background: rgba(255, 255, 255, 0.5); /* Полупрозрачная подложка */
+             
             text-align: center;
         }
 
@@ -37,7 +37,7 @@ html {
 .chbox {
   background: rgba(64, 224, 208, 0.5); /* Цвет #40E0D0 с прозрачностью 50% */
   border-radius: 10px;
-  padding: 10px; /* Исправлена опечатка: было "pading" */
+  padding: 10px;
   width: 250px;
   height: 500px;
   margin: auto;
@@ -53,7 +53,7 @@ html {
    border-radius: 10px;
    background-color: rgba(255,255,255,0.5);
    height: 30px;
-   width: 100px;
+   width: auto;
   display: inline-block;
   text-align: center;
   line-height: 30px;
@@ -77,4 +77,48 @@ input[type="checkbox"]:checked + .btn::after {
   margin-left: auto;
   color: green;
   width: auto;
+}
+
+.glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+        #itemInput {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .delete-btn {
+            background: #dc3545;
+            padding: 5px 10px;
+        }
+
+.addbtn {
+    border: none;
+    background: green;
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    text-align: center;
+    
 }
