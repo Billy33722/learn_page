@@ -7,24 +7,70 @@
 </head>
 <body>
    <header>
-  <h1>
-    продукты
+  <h1 class="glow">
+   Список продуктов
   </h1>
 <div class="chbox">
-  <form>
-    <p>
-      <input type="checkbox" name="mokaroni" id="makaroni" />
-      <label for="makaroni" class="btn">Макароны</label>
-    </p>
-    <p>
-      <input type="checkbox" name="pomidori" id="pomidori" />
-      <label for="pomidori" class="btn">Помидоры</label>
-    </p>
-    <p>
-      <input type="checkbox" name="sosiski" id="sosiski" />
-      <label for="sosiski" class="btn">Сосиски</label>
-    </p>
-  </form>
+    <div class="input-group">
+        <input type="text"
+               id="itemInput"
+               placeholder="Введите продукт..."
+               onkeypress="handleEnter(event)"
+               class="btn"
+               >
+        <button class="addbtn" onclick="addItem()">Добавить</button>
+    </div>
+ <ul id="shoppingList"></ul>
+ 
+  <script>
+        function addItem() {
+            const input = document.getElementById('itemInput');
+            const text = input.value.trim();
+            
+            if (text === '') return;
+            
+            const li = document.createElement('li');
+            li.innerHTML = `
+                ${text}
+                <button class="delete-btn" onclick="removeItem(this)">✕</button>
+            `;
+            
+            document.getElementById('shoppingList').appendChild(li);
+            input.value = '';
+            input.focus();
+            
+            saveList();
+        }
+
+        function removeItem(button) {
+            button.parentElement.remove();
+            saveList();
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') addItem();
+        }
+
+        // Сохранение списка в localStorage
+        function saveList() {
+            const items = [...document.querySelectorAll('li')]
+                .map(item => item.firstChild.textContent.trim());
+            localStorage.setItem('shoppingList', JSON.stringify(items));
+        }
+
+        // Загрузка списка при открытии страницы
+        window.onload = function() {
+            const savedItems = JSON.parse(localStorage.getItem('shoppingList')) || [];
+            savedItems.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    ${item}
+                    <button class="delete-btn" onclick="removeItem(this)">✕</button>
+                `;
+                document.getElementById('shoppingList').appendChild(li);
+            });
+        }
+    </script>
 </div>
    </header>
 </body>
